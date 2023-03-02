@@ -1,4 +1,8 @@
 <resources>
     <string name="title_activity_login">LoginActivity</string>
     <string name="slogan">&quot;Onde saúde e facilidade se encontram&quot;</string>
+    <string name="login_caps">LOG IN</string>
+    <string name="signup_caps">SIGN UP</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="title_activity_sign_up_screen">SignUpScreen</string>
 </resources>

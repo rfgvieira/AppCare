@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EstudoCompose">
         <activity
-            android:name="com.example.login.SplashActivity"
+            android:name="com.example.login.ui.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

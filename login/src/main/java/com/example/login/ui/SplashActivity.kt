@@ -1,4 +1,4 @@
-package com.example.login
+package com.example.login.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -22,10 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
+import com.example.login.ui.login.LoginActivity
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.example.login.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {

@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
     </application>

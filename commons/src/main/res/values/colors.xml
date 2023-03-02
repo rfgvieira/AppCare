@@ -5,4 +5,6 @@
     <color name="blue_dark">#39559e</color>
     <color name="red">#e1295f</color>
     <color name="gray_light">#d0ced0</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="blue_dark_transparent">#BF39559e</color>
 </resources>
