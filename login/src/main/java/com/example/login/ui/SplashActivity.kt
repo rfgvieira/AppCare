@@ -77,8 +77,8 @@ fun Splash(){
             painter = painterResource(id = R.drawable.health),
             contentDescription = "",
             modifier = Modifier
-                .width(150.dp)
-                .height(150.dp)
+                .width(200.dp)
+                .height(200.dp)
         )
         Text(
             "AppCare",
