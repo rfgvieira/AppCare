@@ -7,6 +7,9 @@
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_sign_up_screen">SignUpScreen</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password">Senha</string>
+    <string name="repassword">Repita sua senha</string>
+    <string name="name">Nome</string>
+    <string name="patient_id">Id do Paciente</string>
     <string name="esqueceu_senha">Esqueceu a senha?</string>
 </resources>

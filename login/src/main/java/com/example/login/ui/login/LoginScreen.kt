@@ -16,6 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.R
+import com.example.login.ui.login.textfields.PasswordTextField
+import com.example.login.ui.login.textfields.EmailTextField as EmailTextField
 
 @Composable
 fun LoginScreen() {
@@ -24,12 +26,10 @@ fun LoginScreen() {
             .fillMaxSize()
             .padding(horizontal = 64.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-
-
+        verticalArrangement = Arrangement.spacedBy(16.dp,Alignment.Top)
     ) {
 
-        Spacer(modifier = Modifier.height(160.dp))
+        Spacer(modifier = Modifier.height(80.dp))
         
         Image(painter = painterResource(id = R.drawable.health),
             contentDescription = "",
@@ -41,15 +41,13 @@ fun LoginScreen() {
             fontSize = 24.sp
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         EmailTextField()
 
-        Spacer(modifier = Modifier.height(16.dp))
+        PasswordTextField(stringResource(id = R.string.password))
 
-        PasswordTextField()
-
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Button(
             onClick = { /*TODO*/ },
@@ -65,11 +63,9 @@ fun LoginScreen() {
             Text(
                 text = stringResource(id = R.string.login_caps),
                 fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 6.dp)
+                modifier = Modifier.padding(vertical = 8.dp)
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = stringResource(id = R.string.esqueceu_senha),
@@ -77,64 +73,6 @@ fun LoginScreen() {
         )
     }
 }
-
-@Composable
-fun PasswordTextField() {
-    var passwordTextState by remember {
-        mutableStateOf("")
-    }
-
-    TextField(
-        value = passwordTextState,
-        onValueChange = {
-            if(it.length <= 64)
-                passwordTextState = it
-        },
-        singleLine = true,
-        label = {
-            Text(
-                text = stringResource(id = R.string.password),
-                color = colorResource(id = R.color.red))
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            cursorColor = colorResource(id = R.color.red),
-            focusedIndicatorColor = colorResource(id = R.color.red)
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color.White)
-
-    )
-}
-
-
-@Composable
-fun EmailTextField() {
-    var emailTextState by remember {
-        mutableStateOf("")
-    }
-    TextField(
-        value = emailTextState,
-        label = {
-            Text(
-                text = stringResource(id = R.string.email),
-                color = colorResource(id = R.color.red)
-            )
-        },
-        onValueChange = {
-            if(it.length <= 64)
-                emailTextState = it
-        },
-        modifier = Modifier
-            .background(Color.White)
-            .fillMaxWidth(),
-        singleLine = true,
-        colors = TextFieldDefaults.textFieldColors(cursorColor = colorResource(id = R.color.red),
-            focusedIndicatorColor = colorResource(id = R.color.red)
-        )
-    )
-}
-
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
