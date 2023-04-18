@@ -1,5 +1,6 @@
 package com.example.login.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,13 +24,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.R
+import com.example.main.ui.MainActivity
 import kotlinx.coroutines.launch
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Login(getTabList())
+            Login(getTabList()) { goToMain() }
         }
     }
 
@@ -39,11 +41,16 @@ class LoginActivity : ComponentActivity() {
             getString(R.string.signup_caps)
         )
     }
+
+    private fun goToMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Login(tabList :  List<String>){
+fun Login(tabList :  List<String>, goMain : () -> Unit){
     val pagerState = rememberPagerState()
     Column(modifier = Modifier
         .fillMaxSize()
@@ -63,7 +70,7 @@ fun Login(tabList :  List<String>){
             Column() {
 
             }
-            ViewPage(tabList, pagerState)
+            ViewPage(tabList, pagerState, goMain)
             TabLayout(tabList, pagerState)
         }
 
@@ -115,11 +122,11 @@ fun TabLayout(tabList: List<String>, pagerState: PagerState){
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ViewPage(tabList: List<String>, pagerState: PagerState){
+fun ViewPage(tabList: List<String>, pagerState: PagerState,goMain : () -> Unit ){
     HorizontalPager(state = pagerState, pageCount = tabList.size  ) {
         when (it){
             0 -> {
-                LoginScreen()
+                LoginScreen(goMain)
             }
             1 -> {
                 SignUpScreen()
@@ -132,5 +139,5 @@ fun ViewPage(tabList: List<String>, pagerState: PagerState){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    Login(listOf("Batata", "Cenoura"))
+    Login(listOf("Batata", "Cenoura")) {}
 }

@@ -17,7 +17,7 @@ import com.example.login.ui.login.textfields.EmailTextField
 import com.example.login.ui.login.textfields.PasswordTextField
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(goMain : () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +47,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         LoginButton(
-            clickFunction = { loginClick() },
+            clickFunction =  goMain ,
             modifier = Modifier.fillMaxWidth() ,
             text = stringResource(id = R.string.login_caps)
         )
@@ -59,12 +59,10 @@ fun LoginScreen() {
     }
 }
 
-private fun loginClick(){
 
-}
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun LoginPreview() {
-        LoginScreen()
+    LoginScreen {}
 }
