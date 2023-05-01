@@ -1,4 +1,4 @@
-package com.example.main.ui
+package com.example.main.ui.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
@@ -19,12 +19,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.main.R
 
 @Composable
-fun BottomNavigation (navController: NavController) {
+fun BottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItens.Home,
-        BottomNavItens.Chat,
-        BottomNavItens.Status,
-        BottomNavItens.Prescription
+        NavItens.Home,
+        NavItens.Chat,
+        NavItens.Status,
+        NavItens.Prescription,
     )
 
     BottomNavigation(
@@ -33,10 +33,12 @@ fun BottomNavigation (navController: NavController) {
     ) {
         val navBackStack by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStack?.destination?.route
-        items.forEach{ item ->
+        items.forEach { item ->
             BottomNavigationItem(
                 selected = currentRoute == item.route,
-                icon = { Icon (painterResource(id = item.icon),
+                icon = {
+                    Icon(
+                        painterResource(id = item.icon),
                         contentDescription = stringResource(id = R.string.home),
                         modifier = Modifier.size(24.dp)
                     )
@@ -45,9 +47,9 @@ fun BottomNavigation (navController: NavController) {
                 selectedContentColor = colorResource(id = R.color.red),
                 unselectedContentColor = Color.White,
                 onClick = {
-                    navController.navigate(item.route){
+                    navController.navigate(item.route) {
                         navController.graph.startDestinationRoute?.let {
-                            popUpTo(it){
+                            popUpTo(it) {
                                 saveState = true
                             }
                         }
