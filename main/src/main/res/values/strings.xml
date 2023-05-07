@@ -2,4 +2,6 @@
 <resources>
     <string name="title_activity_main">MainActivity</string>
     <string name="home">Home</string>
+    <string name="logoff">Logoff</string>
+    <string name="logoff_info">Deseja realmente encerrar sua sessão?</string>
 </resources>

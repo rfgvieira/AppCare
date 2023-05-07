@@ -4,27 +4,32 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.material.Divider
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.main.R
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun NavDrawer(
     coroutineScope: CoroutineScope,
     scaffoldState: ScaffoldState,
-    navController: NavController
+    navController: NavController,
+    logoutClick: () -> Unit
 ) {
     val navList = listOf(
         NavItens.Profile,
@@ -87,23 +92,33 @@ fun NavDrawer(
                     .fillMaxWidth()
                     .padding(bottom = 8.dp)
             ) {
-                val bottomList = listOf(
-                    NavItens.Settings,
-                    NavItens.Logout
-                )
 
                 Divider(modifier = Modifier.fillMaxWidth(), color = Color.White)
                 Spacer(modifier = Modifier.size(16.dp))
-                bottomList.forEach { item ->
-                    val selected = item.route == navBackStack?.destination?.route
-                    NavCard(
-                        selected = selected,
-                        coroutineScope = coroutineScope,
-                        scaffoldState = scaffoldState,
-                        navController = navController,
-                        item = item
-                    )
-                }
+                val item = NavItens.Settings
+                val selected = item.route == navBackStack?.destination?.route
+                NavCard(
+                    selected = selected,
+                    coroutineScope = coroutineScope,
+                    scaffoldState = scaffoldState,
+                    navController = navController,
+                    item = item
+                )
+
+                val showDialog = remember { mutableStateOf(true) }
+                CardItem(
+                    text = R.string.logoff,
+                    icon = R.drawable.logout,
+                    clickFunction = {
+                        ShowLogoutDialog(logoutClick,showDialog)
+                    },
+                    onClick = {
+                        coroutineScope.launch {
+                            scaffoldState.drawerState.close()
+                        }
+                        showDialog.value = it},
+
+                )
 
 
             }
@@ -111,6 +126,26 @@ fun NavDrawer(
 
 
     }
+
+}
+
+@Composable
+fun ShowLogoutDialog(logoutClick: () -> Unit, showDialog: MutableState<Boolean>) {
+
+    if(showDialog.value){
+        Dialog(
+            modifier = Modifier.fillMaxWidth(),
+            confirmPair = Pair(stringResource(id = R.string.sim), logoutClick),
+            dismissPair = Pair(stringResource(id = R.string.não), {}),
+            showDialog = {showDialog.value = it},
+            title = stringResource(id = R.string.logoff),
+            textInfo = stringResource(id = R.string.logoff_info)
+        )
+    }
+
+
+
+
 }
 
 

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.EstudoCompose">
         <activity
             android:name="com.example.login.ui.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
