@@ -13,10 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.R
-import com.example.login.ui.login.textfields.EmailTextField
-import com.example.login.ui.login.textfields.NameTextField
-import com.example.login.ui.login.textfields.PasswordTextField
-import com.example.login.ui.login.textfields.PatientIdTextField
+import com.example.login.ui.login.components.*
 
 @Composable
 fun SignUpScreen() {
@@ -42,15 +39,15 @@ fun SignUpScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        EmailTextField()
+        LoginTextField(R.string.email, 64, Modifier.fillMaxWidth())
 
-        NameTextField()
+        LoginTextField(R.string.name, 64, Modifier.fillMaxWidth())
 
-        PatientIdTextField()
+        LoginTextField(R.string.patient_id, 12, Modifier.fillMaxWidth())
 
-        PasswordTextField(stringResource(id = R.string.password))
-        
-        PasswordTextField(stringResource(id = R.string.repassword))
+        LoginTextField(R.string.password, 100, Modifier.fillMaxWidth())
+
+        LoginTextField(R.string.repassword, 100, Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.height(8.dp))
         

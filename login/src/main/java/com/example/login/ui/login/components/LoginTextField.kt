@@ -1,7 +1,5 @@
-package com.example.login.ui.login.textfields
+package com.example.login.ui.login.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -14,32 +12,28 @@ import androidx.compose.ui.res.stringResource
 import com.example.login.R
 
 @Composable
-fun PasswordTextField(label : String) {
-    var passwordTextState by remember {
+fun LoginTextField(text : Int, maxChar: Int, modifier: Modifier) {
+    var textState by remember {
         mutableStateOf("")
     }
-
     TextField(
-        value = passwordTextState,
-        onValueChange = {
-            if(it.length <= 64)
-                passwordTextState = it
-        },
-        singleLine = true,
+        value = textState,
         label = {
             Text(
-                text = label,
+                text = stringResource(id = text),
                 color = colorResource(id = R.color.red)
             )
         },
-        colors = TextFieldDefaults.textFieldColors(
-            cursorColor = colorResource(id = R.color.red),
+        onValueChange = {
+            if(it.length <= maxChar)
+                textState = it
+        },
+        modifier = modifier,
+        singleLine = true,
+        colors = TextFieldDefaults.textFieldColors(cursorColor = colorResource(id = R.color.red),
             focusedIndicatorColor = colorResource(id = R.color.red),
             backgroundColor = Color.White
-
         ),
-        modifier = Modifier.fillMaxWidth(),
         shape = RectangleShape
     )
 }
-

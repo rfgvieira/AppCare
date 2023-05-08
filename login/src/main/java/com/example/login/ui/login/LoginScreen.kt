@@ -13,8 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.R
-import com.example.login.ui.login.textfields.EmailTextField
-import com.example.login.ui.login.textfields.PasswordTextField
+import com.example.login.ui.login.components.LoginTextField
 
 @Composable
 fun LoginScreen(goMain : () -> Unit) {
@@ -40,9 +39,9 @@ fun LoginScreen(goMain : () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        EmailTextField()
+        LoginTextField(R.string.email, 64, Modifier.fillMaxWidth())
 
-        PasswordTextField(stringResource(id = R.string.password))
+        LoginTextField( R.string.password, 100, Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.height(8.dp))
 
