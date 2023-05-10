@@ -110,14 +110,16 @@ fun NavDrawer(
                     text = R.string.logoff,
                     icon = R.drawable.logout,
                     clickFunction = {
-                        ShowLogoutDialog(logoutClick,showDialog)
+                        ShowLogoutDialog(logoutClick, showDialog)
                     },
                     onClick = {
                         coroutineScope.launch {
                             scaffoldState.drawerState.close()
                         }
-                        showDialog.value = it},
-
+                        showDialog.value = it
+                    },
+                    backGroundColor = colorResource(id = R.color.blue_dark),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 )
 
 
@@ -132,18 +134,16 @@ fun NavDrawer(
 @Composable
 fun ShowLogoutDialog(logoutClick: () -> Unit, showDialog: MutableState<Boolean>) {
 
-    if(showDialog.value){
+    if (showDialog.value) {
         Dialog(
             modifier = Modifier.fillMaxWidth(),
             confirmPair = Pair(stringResource(id = R.string.sim), logoutClick),
             dismissPair = Pair(stringResource(id = R.string.não), {}),
-            showDialog = {showDialog.value = it},
+            showDialog = { showDialog.value = it },
             title = stringResource(id = R.string.logoff),
             textInfo = stringResource(id = R.string.logoff_info)
         )
     }
-
-
 
 
 }

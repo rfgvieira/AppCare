@@ -4,4 +4,9 @@
     <string name="home">Home</string>
     <string name="logoff">Logoff</string>
     <string name="logoff_info">Deseja realmente encerrar sua sessão?</string>
+    <string name="location_menu">Find a location</string>
+    <string name="doctor_menu">Choose a doctor</string>
+    <string name="appointment_menu">Make a appointment</string>
+    <string name="er_schedule">Schedule</string>
+    <string name="urgente_location">Find an urgent care location</string>
 </resources>

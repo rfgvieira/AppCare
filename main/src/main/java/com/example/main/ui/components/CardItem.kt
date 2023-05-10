@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.main.R
@@ -19,8 +21,14 @@ import com.example.main.R
 fun CardItem(
     text: Int,
     icon: Int,
-    onClick: (Boolean) -> Unit,
-    clickFunction: (@Composable () -> Unit)? = null) {
+    backGroundColor: Color,
+    fontSize: Int = 16,
+    isFontBold: Boolean = false,
+    iconSize: Int = 24,
+    onClick: ((Boolean) -> Unit)? = null,
+    clickFunction: (@Composable () -> Unit)? = null,
+    modifier: Modifier
+) {
     var clicked by remember { mutableStateOf(false) }
 
     Card(
@@ -28,37 +36,55 @@ fun CardItem(
             .fillMaxWidth()
             .padding(4.dp),
         onClick = {
-            onClick(true)
+            if (onClick != null) {
+                onClick(true)
+            }
             clicked = true
         },
-        backgroundColor = colorResource(id = R.color.blue_dark),
+        backgroundColor = backGroundColor,
         shape = RoundedCornerShape(16.dp),
-        elevation = 0.dp
-    ) {
+        elevation = 0.dp,
+
+        ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = modifier
         ) {
             Icon(
                 painterResource(id = icon),
                 contentDescription = stringResource(id = text),
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(iconSize.dp),
                 tint = Color.White
             )
             Text(
                 text = stringResource(id = text),
                 color = Color.White,
-                fontSize = 16.sp,
+                fontSize = fontSize.sp,
+                fontWeight = if (isFontBold) FontWeight.Bold else FontWeight.Normal,
                 modifier = Modifier.padding(start = 24.dp)
             )
 
         }
     }
 
-    if (clicked){
+    if (clicked) {
         if (clickFunction != null) {
             clickFunction()
         }
     }
+}
+
+
+@Preview
+@Composable
+fun CardPreview() {
+    CardItem(
+        text = R.string.logoff,
+        icon = R.drawable.logout,
+        backGroundColor = colorResource(id = R.color.red),
+        modifier = Modifier
+            .padding(vertical = 20.dp, horizontal = 16.dp)
+            .fillMaxWidth()
+    )
 }

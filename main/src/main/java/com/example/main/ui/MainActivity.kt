@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.commons.StringUtils.Companion.capital
 import com.example.main.ui.components.*
+import com.example.main.ui.screens.HomeScreen
 import com.example.main.ui.screens.ProfileScreen
 import com.example.main.ui.screens.SettingsScreen
 
