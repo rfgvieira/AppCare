@@ -24,9 +24,11 @@ fun NavCard (selected : Boolean, coroutineScope : CoroutineScope, scaffoldState 
             .fillMaxWidth()
             .padding(4.dp),
         onClick = {
-            coroutineScope.launch {
-                scaffoldState.drawerState.close()
-                navController.navigate(item.route)
+            if(!selected){
+                coroutineScope.launch {
+                    scaffoldState.drawerState.close()
+                    navController.navigate(item.route)
+                }
             }
         },
         backgroundColor = if (selected) Color.White else colorResource(id = R.color.blue_dark),

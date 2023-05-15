@@ -23,8 +23,8 @@ fun BottomNavigation(navController: NavController) {
     val items = listOf(
         NavItens.Home,
         NavItens.Chat,
-        NavItens.Status,
         NavItens.Prescription,
+        NavItens.Profile
     )
 
     BottomNavigation(
@@ -47,15 +47,8 @@ fun BottomNavigation(navController: NavController) {
                 selectedContentColor = colorResource(id = R.color.red),
                 unselectedContentColor = Color.White,
                 onClick = {
-                    navController.navigate(item.route) {
-                        navController.graph.startDestinationRoute?.let {
-                            popUpTo(it) {
-                                saveState = true
-                            }
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    if(currentRoute != item.route)
+                        navController.navigate(item.route)
                 },
             )
 

@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SettingsScreen() {
+fun DoctorListScreen (){
     Column(Modifier.fillMaxWidth()) {
-        Text("Settings")
+        Text("Doctor")
     }
 }

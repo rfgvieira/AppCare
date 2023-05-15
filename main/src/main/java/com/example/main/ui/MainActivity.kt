@@ -17,9 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.commons.StringUtils.Companion.capital
 import com.example.main.ui.components.*
-import com.example.main.ui.screens.HomeScreen
-import com.example.main.ui.screens.ProfileScreen
-import com.example.main.ui.screens.SettingsScreen
+import com.example.main.ui.screens.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,13 +75,10 @@ private fun NavigationGraph(
         modifier = modifier.fillMaxWidth()
     ){
         composable(NavItens.Home.route){
-            HomeScreen()
+            HomeScreen(navHostController)
         }
         composable(NavItens.Chat.route){
             ChatScreen()
-        }
-        composable(NavItens.Status.route){
-            StatusScreen()
         }
         composable(NavItens.Prescription.route){
             PrescriptionScreen()
@@ -93,6 +88,21 @@ private fun NavigationGraph(
         }
         composable(NavItens.Settings.route){
             SettingsScreen()
+        }
+        composable(MenuItems.Location.route){
+            LocationScreen()
+        }
+        composable(MenuItems.Doctor.route){
+            DoctorListScreen()
+        }
+        composable(MenuItems.Appointment.route){
+            AppointmentScreen()
+        }
+        composable(MenuItems.Schedule.route){
+            ScheduleScreen()
+        }
+        composable(MenuItems.Urgent.route){
+            UrgentScreen()
         }
     }
 }

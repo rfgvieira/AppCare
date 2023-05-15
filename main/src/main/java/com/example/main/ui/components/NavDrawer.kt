@@ -32,11 +32,10 @@ fun NavDrawer(
     logoutClick: () -> Unit
 ) {
     val navList = listOf(
-        NavItens.Profile,
         NavItens.Home,
         NavItens.Chat,
-        NavItens.Status,
         NavItens.Prescription,
+        NavItens.Profile
     )
 
     val navBackStack by navController.currentBackStackEntryAsState()

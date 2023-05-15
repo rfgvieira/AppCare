@@ -5,13 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.main.ui.components.CardItem
 import com.example.main.ui.components.MenuItems
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navHostController: NavHostController) {
     Column(
         Modifier
             .fillMaxWidth()
@@ -40,14 +40,19 @@ fun HomeScreen() {
                 iconSize = 44,
                 modifier = Modifier
                     .padding(vertical = 20.dp, horizontal = 16.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                clickFunction = {
+                    navHostController.navigate(item.route){
+                        navHostController.graph.startDestinationRoute?.let {
+                            popUpTo(it) {
+                                saveState = true
+                            }
+                        }
+                        restoreState = true
+                    }
+                }
             )
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomePreview() {
-    HomeScreen()
-}

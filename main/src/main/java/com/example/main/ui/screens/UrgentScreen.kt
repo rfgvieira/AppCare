@@ -1,4 +1,4 @@
-package com.example.main.ui
+package com.example.main.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun StatusScreen() {
+fun UrgentScreen (){
     Column(Modifier.fillMaxWidth()) {
-        Text("Status")
+        Text("Urgent")
     }
 }
