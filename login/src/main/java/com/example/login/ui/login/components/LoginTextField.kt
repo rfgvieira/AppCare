@@ -1,5 +1,7 @@
 package com.example.login.ui.login.components
 
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -12,7 +14,8 @@ import androidx.compose.ui.res.stringResource
 import com.example.login.R
 
 @Composable
-fun LoginTextField(text : Int, maxChar: Int, modifier: Modifier) {
+fun LoginTextField(text : Int, maxChar: Int, modifier: Modifier, keyboardOptions: KeyboardOptions =
+    KeyboardOptions.Default, keyboardActions: KeyboardActions = KeyboardActions ()) {
     var textState by remember {
         mutableStateOf("")
     }
@@ -28,8 +31,11 @@ fun LoginTextField(text : Int, maxChar: Int, modifier: Modifier) {
             if(it.length <= maxChar)
                 textState = it
         },
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
         modifier = modifier,
         singleLine = true,
+
         colors = TextFieldDefaults.textFieldColors(cursorColor = colorResource(id = R.color.red),
             focusedIndicatorColor = colorResource(id = R.color.red),
             backgroundColor = Color.White
